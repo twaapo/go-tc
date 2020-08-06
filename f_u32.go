@@ -177,6 +177,8 @@ func validateU32SelOptions(info *U32Sel) ([]byte, error) {
 	binary.Write(buf, nativeEndian, info.Off)
 	binary.Write(buf, nativeEndian, info.Offoff)
 	binary.Write(buf, nativeEndian, info.Hoff)
+	// fix alignment
+	buf.WriteByte(0x00)
 	binary.Write(buf, binary.BigEndian, info.Hmask)
 	for _, v := range info.Keys {
 		data, err := marshalStruct(v)
