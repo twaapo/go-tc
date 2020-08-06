@@ -64,6 +64,9 @@ func (f *Filter) Get(i *Msg) ([]Object, error) {
 
 func validateFilterObject(action int, info *Object) ([]tcOption, error) {
 	options := []tcOption{}
+	if action == unix.RTM_DELTFILTER && info.Handle == 0 && info.Parent == 0 {
+		return options, nil
+	}
 	if info.Ifindex == 0 {
 		return options, ErrInvalidDev
 	}
