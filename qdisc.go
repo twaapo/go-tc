@@ -140,6 +140,9 @@ func validateQdiscObject(action int, info *Object) ([]tcOption, error) {
 	case "ingress":
 		// ingress is parameterless
 	default:
+		if action == unix.RTM_DELQDISC {
+			return options, nil
+		}
 		return options, fmt.Errorf("%s: %w", info.Kind, ErrNotImplemented)
 	}
 	if err != nil {
