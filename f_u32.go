@@ -95,6 +95,9 @@ func marshalU32(info *U32) ([]byte, error) {
 	if info.Link != 0 {
 		options = append(options, tcOption{Interpretation: vtUint32, Type: tcaU32Link, Data: info.Link})
 	}
+	if info.Hash != 0 {
+		options = append(options, tcOption{Interpretation: vtUint32, Type: tcaU32Hash, Data: info.Hash})
+	}
 
 	return marshalAttributes(options)
 }
