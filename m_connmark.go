@@ -27,6 +27,7 @@ type ConnmarkParam struct {
 	RefCnt  uint32
 	BindCnt uint32
 	Zone    uint16
+	_       [2]byte //pad
 }
 
 func unmarshalConnmark(data []byte, info *Connmark) error {
